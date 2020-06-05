@@ -70,4 +70,5 @@ function myReset(){
     hours=0;
     document.getElementById("display").innerHTML = "00:00:00";
     document.getElementById("startStop").innerHTML = "Start";
+    status="stopped";
 }
