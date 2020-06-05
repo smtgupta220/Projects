@@ -1,11 +1,13 @@
 let seconds =0;
 let minutes = 0;
 let hours = 0;
+let milli =0;
 // define vars to hold "display" value 
 
 let displaySeconds = 0;
 let displayMinutes =0;
 let displayHours = 0;
+let displayMilli =0;
 
 var status = "stopped";
 
@@ -13,12 +15,25 @@ var status = "stopped";
 
 function stopWatch(){
 
+    milli++;
+    if(milli/100===1){
     seconds++;
+    milli=0;
     if(seconds/60===1){
         minutes++;
+        seconds=0;
         if(minutes/60===1){
             hours++;
+            minutes=0;
         }
+    }
+}
+
+    if(milli<10){
+        displayMilli="0"+milli.toString();
+    }
+    else{
+        displayMilli = milli;
     }
 
     if(seconds<10){
@@ -45,14 +60,14 @@ function stopWatch(){
     }
 
 
-    document.getElementById("display").innerHTML = displayHours+":"+displayMinutes+":"+displaySeconds;
+    document.getElementById("display").innerHTML = displayHours+":"+displayMinutes+":"+displaySeconds+":"+displayMilli;
 }
 
 function myStart(){
     if(status=="stopped")
     {
       
-        interval = window.setInterval(stopWatch,1000);
+        interval = window.setInterval(stopWatch,10);
         document.getElementById("startStop").innerHTML = "Stop";
         status = "started";
     }
